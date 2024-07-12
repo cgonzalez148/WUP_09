@@ -59,6 +59,13 @@ if(!require("Bolstad")) {install.packages("Bolstad");require("Bolstad")}
 
 ## Perch
 
+### Best Models
+
+```{r}
+PerchModel=lm(Weight~ .,data=Perch)
+summary.lm(PerchModel)
+```
+
 ```{r}
 library(leaps)
 regsubsets.out <-
@@ -75,12 +82,6 @@ library(car)
 subsets(regsubsets.out,statistic="adjr2",legend="bottomright",main="Adjusted R^2")
 ```
 
-### Best Models
-
-```{r}
-PerchModel=lm(Weight~ .,data=Perch)
-summary.lm(PerchModel)
-```
 
 ### Best Two regressor model
 ```{r}
@@ -90,22 +91,71 @@ summary.lm(Perch2)
 The best two regressor model predict weight using height and width.
 
 ## Pike
-
-
-
-### Best Models
-
 ```{r}
 PikeModel=lm(Weight~ .,data=Pike)
-summary.lm(PikeModel)
+summary.lm(pikeModel)
+```
+
+```{r}
+library(leaps)
+regsubsets.out <-
+    regsubsets(Weight ~ .,
+               data = Pike,
+               nbest = 1,       # 1 best model for each number of predictors
+               nvmax = NULL,    # NULL for no limit on number of variables
+               force.in = NULL, force.out = NULL,
+               method = "exhaustive")
+
+summary.out <- summary(regsubsets.out)
+as.data.frame(summary.out$outmat)
+library(car)
+subsets(regsubsets.out,statistic="adjr2",legend="bottomright",main="Adjusted R^2")
+```
+
+### Best Models
+```{r}
+Pike2=lm(Weight~Length1+Length3,data=Pike)
+summary.lm(Pike2)
+```
+
+
+### Best Two regressor model
+
+The best two regressors are Length1 and Length3.
+
+## Roach
+
+```{r}
+RoachModel=lm(Weight~ .,data=Roach)
+summary.lm(RoachModel)
+```
+
+```{r}
+library(leaps)
+regsubsets.out <-
+    regsubsets(Weight ~ .,
+               data = Roach,
+               nbest = 1,       # 1 best model for each number of predictors
+               nvmax = NULL,    # NULL for no limit on number of variables
+               force.in = NULL, force.out = NULL,
+               method = "exhaustive")
+
+summary.out <- summary(regsubsets.out)
+as.data.frame(summary.out$outmat)
+library(car)
+subsets(regsubsets.out,statistic="adjr2",legend="bottomright",main="Adjusted R^2")
+```
+
+## Best models
+```{r}
+Roach2=lm(Weight~Length3+Width,data=Roach)
+summary.lm(Roach2)
 ```
 
 ### Best Two regressor model
 
-## Roach
-
-### Best Models
-
-### Best Two regressor model
+The best two regressors are Length and Width.
 
 ## Final Summary Statements
+
+I conclude that the 
