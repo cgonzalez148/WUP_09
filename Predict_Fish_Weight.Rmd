@@ -93,7 +93,7 @@ The best two regressor model predict weight using height and width.
 ## Pike
 ```{r}
 PikeModel=lm(Weight~ .,data=Pike)
-summary.lm(pikeModel)
+summary.lm(PikeModel)
 ```
 
 ```{r}
