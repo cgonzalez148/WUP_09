@@ -158,4 +158,4 @@ The best two regressors are Length and Width.
 
 ## Final Summary Statements
 
-I conclude that the 
+I conclude that the best two regressors according to the Pike data are Length1 and Length3. According to the roach data I conclude that the best two regressors are Length and Width. 
