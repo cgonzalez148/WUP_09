@@ -121,7 +121,7 @@ summary.lm(Pike2)
 
 ### Best Two regressor model
 
-The best two regressors are Length1 and Length3.
+The best two regressors are Length1 and Length3. 
 
 ## Roach
 
