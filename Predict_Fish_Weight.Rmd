@@ -146,7 +146,7 @@ library(car)
 subsets(regsubsets.out,statistic="adjr2",legend="bottomright",main="Adjusted R^2")
 ```
 
-## Best models
+## Best models 
 ```{r}
 Roach2=lm(Weight~Length3+Width,data=Roach)
 summary.lm(Roach2)
