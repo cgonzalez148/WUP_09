@@ -1,15 +1,12 @@
 ---
 title: "Weight of Fish"
-author: "Your Name"
+author: "Citlali Gonzalez"
 date: "`r Sys.Date()`"  
 output: 
   html_document:
     number_sections: true
     toc: true
     toc_depth: 5
-
- 
-    
 ---
 
 
