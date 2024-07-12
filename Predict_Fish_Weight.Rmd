@@ -7,6 +7,9 @@ output:
     number_sections: true
     toc: true
     toc_depth: 5
+    
+    
+    
 ---
 
 
@@ -45,17 +48,57 @@ Whitefish <- select(Whitefish, -Species)
 
 # For each of the three species of fish listed below, determine the best regression model and also the best 2 element regression model. Use the BestSubset Regression helper file.
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+
+if(!require("Bolstad")) {install.packages("Bolstad");require("Bolstad")}
+```
+
 
 ## Perch
 
+```{r}
+library(leaps)
+regsubsets.out <-
+    regsubsets(Weight ~ .,
+               data = Perch,
+               nbest = 1,       # 1 best model for each number of predictors
+               nvmax = NULL,    # NULL for no limit on number of variables
+               force.in = NULL, force.out = NULL,
+               method = "exhaustive")
+
+summary.out <- summary(regsubsets.out)
+as.data.frame(summary.out$outmat)
+library(car)
+subsets(regsubsets.out,statistic="adjr2",legend="bottomright",main="Adjusted R^2")
+```
+
 ### Best Models
 
-### Best Two regressor model
+```{r}
+PerchModel=lm(Weight~ .,data=Perch)
+summary.lm(PerchModel)
+```
 
+### Best Two regressor model
+```{r}
+Perch2=lm(Weight~Height+Width,data=Perch)
+summary.lm(Perch2)
+```
+The best two regressor model predict weight using height and width.
 
 ## Pike
 
+
+
 ### Best Models
+
+```{r}
+PikeModel=lm(Weight~ .,data=Pike)
+summary.lm(PikeModel)
+```
 
 ### Best Two regressor model
 
